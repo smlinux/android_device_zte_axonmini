@@ -1,0 +1,361 @@
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0
+Found valid GPT with protective MBR; using GPT
+
+Disk /dev/block/mmcblk0: 61071360 sectors, 1148M
+Logical sector size: 512
+Disk identifier (GUID): 98101b32-bbe2-4bf2-a06e-2bb33d000c20
+Partition table holds up to 28 entries
+First usable sector is 34, last usable sector is 61071326
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1          131072          294911       80.0M   0700  modem
+   2          393216          393217        1024   0700  fsc
+   3          393218          393233        8192   0700  ssd
+   4          524288          524351       32768   0700  DDR
+   5          655360          656383        512K   0700  sbl1
+   6          656384          657407        512K   0700  rpm
+   7          657408          658431        512K   0700  tz
+   8          658432          659455        512K   0700  hyp
+   9          786432          786463       16384   0700  sec
+  10          786464          789535       1536K   0700  fsg
+  11          917504          920575       1536K   0700  modemst1
+  12          920576          923647       1536K   0700  modemst2
+  13         1048576         1050623       1024K   0700  aboot
+  14         1050624         1132543       40.0M   0700  boot
+  15         1132544         1214463       40.0M   0700  recovery
+  16         1214464         1216511       1024K   0700  devinfo
+  17         1216512         7507967       3072M   0700  system
+  18         7602176         8216575        300M   0700  cache
+  19         8216576         8282111       32.0M   0700  persist
+  20         8282112         8284159       1024K   0700  misc
+  21         8284160         8285183        512K   0700  keystore
+  22         8285184         8286207        512K   0700  config
+  23         8286208         8417279       64.0M   0700  oem
+  24         8417280         8458239       20.0M   0700  splash
+  25         8458240         8720383        128M   0700  logs
+  26         8781824        61071326       24.9G   0700  userdata
+  
+########################################################################
+
+root@msm8916_64:/ # cat /proc/partitions
+major minor  #blocks  name
+
+ 179        0   30535680 mmcblk0
+ 179        1      81920 mmcblk0p1
+ 179        2          1 mmcblk0p2
+ 179        3          8 mmcblk0p3
+ 179        4         32 mmcblk0p4
+ 179        5        512 mmcblk0p5
+ 179        6        512 mmcblk0p6
+ 179        7        512 mmcblk0p7
+ 179        8        512 mmcblk0p8
+ 179        9         16 mmcblk0p9
+ 179       10       1536 mmcblk0p10
+ 179       11       1536 mmcblk0p11
+ 179       12       1536 mmcblk0p12
+ 179       13       1024 mmcblk0p13
+ 179       14      40960 mmcblk0p14
+ 179       15      40960 mmcblk0p15
+ 179       16       1024 mmcblk0p16
+ 179       17    3145728 mmcblk0p17
+ 179       18     307200 mmcblk0p18
+ 179       19      32768 mmcblk0p19
+ 179       20       1024 mmcblk0p20
+ 179       21        512 mmcblk0p21
+ 179       22        512 mmcblk0p22
+ 179       23      65536 mmcblk0p23
+ 179       24      20480 mmcblk0p24
+ 179       25     131072 mmcblk0p25
+ 179       26   26144751 mmcblk0p26
+ 179       32       4096 mmcblk0rpmb
+ 
+########################################################################
+
+root@msm8916_64:/ # ls -al /dev/block/bootdevice/by-name         
+lrwxrwxrwx root     root              1970-03-12 16:14 DDR -> /dev/block/mmcblk0p4
+lrwxrwxrwx root     root              1970-03-12 16:14 aboot -> /dev/block/mmcblk0p13
+lrwxrwxrwx root     root              1970-03-12 16:14 boot -> /dev/block/mmcblk0p14
+lrwxrwxrwx root     root              1970-03-12 16:14 cache -> /dev/block/mmcblk0p18
+lrwxrwxrwx root     root              1970-03-12 16:14 config -> /dev/block/mmcblk0p22
+lrwxrwxrwx root     root              1970-03-12 16:14 devinfo -> /dev/block/mmcblk0p16
+lrwxrwxrwx root     root              1970-03-12 16:14 fsc -> /dev/block/mmcblk0p2
+lrwxrwxrwx root     root              1970-03-12 16:14 fsg -> /dev/block/mmcblk0p10
+lrwxrwxrwx root     root              1970-03-12 16:14 hyp -> /dev/block/mmcblk0p8
+lrwxrwxrwx root     root              1970-03-12 16:14 keystore -> /dev/block/mmcblk0p21
+lrwxrwxrwx root     root              1970-03-12 16:14 logs -> /dev/block/mmcblk0p25
+lrwxrwxrwx root     root              1970-03-12 16:14 misc -> /dev/block/mmcblk0p20
+lrwxrwxrwx root     root              1970-03-12 16:14 modem -> /dev/block/mmcblk0p1
+lrwxrwxrwx root     root              1970-03-12 16:14 modemst1 -> /dev/block/mmcblk0p11
+lrwxrwxrwx root     root              1970-03-12 16:14 modemst2 -> /dev/block/mmcblk0p12
+lrwxrwxrwx root     root              1970-03-12 16:14 oem -> /dev/block/mmcblk0p23
+lrwxrwxrwx root     root              1970-03-12 16:14 persist -> /dev/block/mmcblk0p19
+lrwxrwxrwx root     root              1970-03-12 16:14 recovery -> /dev/block/mmcblk0p15
+lrwxrwxrwx root     root              1970-03-12 16:14 rpm -> /dev/block/mmcblk0p6
+lrwxrwxrwx root     root              1970-03-12 16:14 sbl1 -> /dev/block/mmcblk0p5
+lrwxrwxrwx root     root              1970-03-12 16:14 sec -> /dev/block/mmcblk0p9
+lrwxrwxrwx root     root              1970-03-12 16:14 splash -> /dev/block/mmcblk0p24
+lrwxrwxrwx root     root              1970-03-12 16:14 ssd -> /dev/block/mmcblk0p3
+lrwxrwxrwx root     root              1970-03-12 16:14 system -> /dev/block/mmcblk0p17
+lrwxrwxrwx root     root              1970-03-12 16:14 tz -> /dev/block/mmcblk0p7
+lrwxrwxrwx root     root              1970-03-12 16:14 userdata -> /dev/block/mmcblk0p26
+
+########################################################################
+
+root@msm8916_64:/ # df
+Filesystem               Size     Used     Free   Blksize
+/dev                     1.4G     3.3M     1.4G   4096
+/sys/fs/cgroup           1.4G    12.0K     1.4G   4096
+/mnt/asec                1.4G     0.0K     1.4G   4096
+/mnt/obb                 1.4G     0.0K     1.4G   4096
+/system                  2.9G     2.6G   357.2M   4096
+/data                   24.4G     2.6G    21.8G   4096
+/cache                 290.6M   384.0K   290.2M   4096
+/persist                27.5M   184.0K    27.3M   4096
+/firmware               80.0M    53.1M    26.9M   16384
+/mnt/shell/emulated     24.4G     2.9G    21.5G   4096
+/mnt/shell/emulated/0    24.4G     2.9G    21.5G   4096
+
+########################################################################
+
+root@msm8916_64:/ # cat /proc/mounts
+rootfs / rootfs rw,relatime 0 0
+tmpfs /dev tmpfs rw,seclabel,nosuid,relatime,size=1450560k,nr_inodes=362640,mode=755 0 0
+devpts /dev/pts devpts rw,seclabel,relatime,mode=600 0 0
+proc /proc proc rw,relatime 0 0
+sysfs /sys sysfs rw,seclabel,relatime 0 0
+selinuxfs /sys/fs/selinux selinuxfs rw,relatime 0 0
+debugfs /sys/kernel/debug debugfs rw,relatime 0 0
+none /acct cgroup rw,relatime,cpuacct 0 0
+none /sys/fs/cgroup tmpfs rw,seclabel,relatime,size=1450560k,nr_inodes=362640,mode=750,gid=1000 0 0
+tmpfs /mnt/asec tmpfs rw,seclabel,relatime,size=1450560k,nr_inodes=362640,mode=755,gid=1000 0 0
+tmpfs /mnt/obb tmpfs rw,seclabel,relatime,size=1450560k,nr_inodes=362640,mode=755,gid=1000 0 0
+none /dev/cpuctl cgroup rw,relatime,cpu 0 0
+adb /dev/usb-ffs/adb functionfs rw,relatime 0 0
+/dev/block/bootdevice/by-name/system /system ext4 rw,seclabel,relatime,discard,data=ordered 0 0
+/dev/block/bootdevice/by-name/userdata /data ext4 rw,seclabel,nosuid,nodev,relatime,discard,noauto_da_alloc,errors=panic,data=ordered 0 0
+/dev/block/bootdevice/by-name/cache /cache ext4 rw,seclabel,nosuid,nodev,relatime,data=ordered 0 0
+/dev/block/bootdevice/by-name/persist /persist ext4 rw,seclabel,nosuid,nodev,relatime,data=ordered 0 0
+/dev/block/bootdevice/by-name/modem /firmware vfat ro,context=u:object_r:firmware_file:s0,relatime,uid=1000,gid=1000,fmask=0337,dmask=0227,codepage=437,iocharset=iso8859-1,shortname=lower,errors=remount-ro 0 0
+/dev/fuse /mnt/shell/emulated fuse rw,nosuid,nodev,noexec,relatime,user_id=1023,group_id=1023,default_permissions,allow_other 0 0
+/dev/fuse /storage/uicc0 fuse rw,nosuid,nodev,noexec,relatime,user_id=1023,group_id=1023,default_permissions,allow_other 0 0
+/dev/fuse /mnt/shell/emulated/0 fuse rw,nosuid,nodev,noexec,relatime,user_id=1023,group_id=1023,default_permissions,allow_other 0 0
+
+########################################################################
+
+### Blocks size ###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p1                              
+
+Disk /dev/block/mmcblk0p1: 83 MB, 83886080 bytes
+4 heads, 16 sectors/track, 2560 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p2                              
+
+Disk /dev/block/mmcblk0p2: 0 MB, 1024 bytes
+4 heads, 16 sectors/track, 0 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p3                              
+
+Disk /dev/block/mmcblk0p3: 0 MB, 8192 bytes
+4 heads, 16 sectors/track, 0 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p4                              
+
+Disk /dev/block/mmcblk0p4: 0 MB, 32768 bytes
+4 heads, 16 sectors/track, 1 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p5                              
+
+Disk /dev/block/mmcblk0p5: 0 MB, 524288 bytes
+4 heads, 16 sectors/track, 16 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p6                              
+
+Disk /dev/block/mmcblk0p6: 0 MB, 524288 bytes
+4 heads, 16 sectors/track, 16 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p7                              
+
+Disk /dev/block/mmcblk0p7: 0 MB, 524288 bytes
+4 heads, 16 sectors/track, 16 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p8                              
+
+Disk /dev/block/mmcblk0p8: 0 MB, 524288 bytes
+4 heads, 16 sectors/track, 16 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p9                              
+
+Disk /dev/block/mmcblk0p9: 0 MB, 16384 bytes
+4 heads, 16 sectors/track, 0 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p10                             
+
+Disk /dev/block/mmcblk0p10: 1 MB, 1572864 bytes
+4 heads, 16 sectors/track, 48 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p11                             
+
+Disk /dev/block/mmcblk0p11: 1 MB, 1572864 bytes
+4 heads, 16 sectors/track, 48 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p12                             
+
+Disk /dev/block/mmcblk0p12: 1 MB, 1572864 bytes
+4 heads, 16 sectors/track, 48 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p13                             
+
+Disk /dev/block/mmcblk0p13: 1 MB, 1048576 bytes
+4 heads, 16 sectors/track, 32 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p14                             
+
+Disk /dev/block/mmcblk0p14: 41 MB, 41943040 bytes
+4 heads, 16 sectors/track, 1280 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p15                             
+
+Disk /dev/block/mmcblk0p15: 41 MB, 41943040 bytes
+4 heads, 16 sectors/track, 1280 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p16                             
+
+Disk /dev/block/mmcblk0p16: 1 MB, 1048576 bytes
+4 heads, 16 sectors/track, 32 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p17                             
+
+Disk /dev/block/mmcblk0p17: 3221 MB, 3221225472 bytes
+4 heads, 16 sectors/track, 98304 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p18                             
+
+Disk /dev/block/mmcblk0p18: 314 MB, 314572800 bytes
+4 heads, 16 sectors/track, 9600 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p19                             
+
+Disk /dev/block/mmcblk0p19: 33 MB, 33554432 bytes
+4 heads, 16 sectors/track, 1024 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p20                             
+
+Disk /dev/block/mmcblk0p20: 1 MB, 1048576 bytes
+4 heads, 16 sectors/track, 32 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p21                             
+
+Disk /dev/block/mmcblk0p21: 0 MB, 524288 bytes
+4 heads, 16 sectors/track, 16 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p22                             
+
+Disk /dev/block/mmcblk0p22: 0 MB, 524288 bytes
+4 heads, 16 sectors/track, 16 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p23                             
+
+Disk /dev/block/mmcblk0p23: 67 MB, 67108864 bytes
+4 heads, 16 sectors/track, 2048 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p24                             
+
+Disk /dev/block/mmcblk0p24: 20 MB, 20971520 bytes
+4 heads, 16 sectors/track, 640 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p25                             
+
+Disk /dev/block/mmcblk0p25: 134 MB, 134217728 bytes
+4 heads, 16 sectors/track, 4096 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0p26                             
+
+Disk /dev/block/mmcblk0p26: 26.7 GB, 26772225536 bytes
+4 heads, 16 sectors/track, 817023 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+###
+
+root@msm8916_64:/ # fdisk -l /dev/block/mmcblk0rpmb                            
+
+Disk /dev/block/mmcblk0rpmb: 4 MB, 4194304 bytes
+4 heads, 16 sectors/track, 128 cylinders
+Units = cylinders of 64 * 512 = 32768 bytes
+
+########################################################################
